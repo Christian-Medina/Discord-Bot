@@ -16,3 +16,6 @@ client.on("message", msg => {
     msg.channel.send(`${msg.author.username} Hello There!`)
 })
 client.login(ConfigFile.config.token);
+
+
+//test

@@ -18,4 +18,3 @@ client.on("message", msg => {
 client.login(ConfigFile.config.token);
 
 
-//test

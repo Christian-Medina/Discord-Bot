@@ -10,12 +10,14 @@ loadCommands(`${__dirname}/commands`)
 
 client.on("ready", () => {
 
-    //let us know bot is on
+    client.user.setActivity("with my Dong", {type: "PLAYING"});
     console.log("Hello There");
 })
 client.on("message", msg => {
     //ignore message if sent by bot
     if (msg.author.bot) { return; }
+    //cannot dm bot
+    if (msg.channel.type == "dm") { return; }
     //ignore messages that dont start with prefix
     if (!msg.content.startsWith(ConfigFile.config.prefix)) { return; }
     //handle
@@ -38,7 +40,7 @@ function loadCommands(commandsPath: string) {
 
 async function handleCommand(msg: Discord.Message) {
     //split string into command and args
-    let command = msg.content.split(" ")[0].replace(ConfigFile.config.prefix, "");
+    let command = msg.content.split(" ")[0].replace(ConfigFile.config.prefix, "").toLowerCase();
     let args = msg.content.split(" ").slice(1);
     //loop through loaded commands
     for (const commandClass of commands) {
